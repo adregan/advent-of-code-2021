@@ -31,6 +31,8 @@ You can read the file and produce an array of numbers with the following idiom:
 
 ### Day One
 
+#### Part One
+
 ```apl
 solve ← {+/1 1⍉0 1↓∘.<⍨⍵}
 ```
@@ -66,3 +68,25 @@ We can then select only those values in the leading diagonal with the idiom `1 1
 
 - `+/`
 At this point, a plus reduce `+/` will give us the answer
+
+#### Part Two
+
+Part two involves the same calculation but batches values together in the sum of
+a rolling window of 3. The rest of thealgorithm remains the same, we just need to manipulate the
+input.
+
+In APL this can be easily done with [Reduce
+n-wise](https://help.dyalog.com/latest/#Language/Primitive%20Operators/Reduce%20N%20Wise.htm#ReduceN-Wise)
+as shown here with a 3n-wise catenate reduction:
+
+```
+in ← 199 200 208 210 200 207 240 269 260 263
+3,/in
+
+┌───────────┬───────────┬───────────┬───────────┬───────────┬───────────┬───────────┬───────────┐
+│199 200 208│200 208 210│208 210 200│210 200 207│200 207 240│207 240 269│240 269 260│269 260 263│
+└───────────┴───────────┴───────────┴───────────┴───────────┴───────────┴───────────┴───────────┘
+```
+
+To instead sum them, we need `+3/`. After that, we can pass the result to the
+original algorithm for the answer.
