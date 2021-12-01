@@ -90,3 +90,15 @@ in ← 199 200 208 210 200 207 240 269 260 263
 
 To instead sum them, we need `+3/`. After that, we can pass the result to the
 original algorithm for the answer.
+
+#### Simpler solution
+
+While checking my work, I came across a much shorter solution which I am
+preserving here for future reference.
+
+As it's possible to do an n-wise reduction with <, you can more optimally use:
+
+```
+one ← +/2</⊢
+two ← +/2</3+/⊢
+```
