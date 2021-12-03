@@ -5,9 +5,10 @@
      in←{↑⍎¨¨⊃⎕NGET ⍵ 1}⍵
      ⍝ to find gamma, sum up th columns and compare results to half the length
      ⍝ of the input. If greater, the most frequent value is 1
-     gamma←((≢in)÷2)>+⌿in
      ⍝ epsilon is just the inverse of gamma (not gamma)
-     epsilon←~gamma
+     epsilon←~gamma←((≢in)÷2)>+⌿in
 
-     ⎕←'part one:',2⊥gamma×2⊥epsilon
+     ⍝ over (⍥) is handy because it allows us to first apply the decode to each
+     ⍝ arguments and then apply multiplication to the pair
+     ⎕←'part one:',gamma×⍥(2⊥⊢)epsilon
  }
