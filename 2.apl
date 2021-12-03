@@ -7,5 +7,18 @@
      cmds←{⍵∘≡¨⊣/in}¨('forward' 'up' 'down')
      (fw up dn)←+/cmdmat←↑{⍵×ns}¨cmds
 
-     fw×dn-up
+     ⎕←'part one:',fw×dn-up
+
+     ⍝ the command matrix with the first row (forward) dropped
+     ⍝ and then flipped so that down is on top
+     ⍝ (could just alter the order of the commands above)
+     ⍝ represents the running aim if we plus scan the rows subtract the columns
+     aim←-⌿+\⊖1↓cmdmat
+
+     ⍝ once we've constructing a matrix of forward commands
+     ⍝ and running aim, we can multiply the columns for the various
+     ⍝ depth increases and sum them for the total depth
+     depth←+/×⌿↑(0⌷cmdmat)(aim)
+
+     ⎕←'part two:',fw×depth
  }
