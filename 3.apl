@@ -10,5 +10,5 @@
 
      ⍝ over (⍥) is handy because it allows us to first apply the decode to each
      ⍝ arguments and then apply multiplication to the pair
-     ⎕←'part one:',gamma×⍥(2⊥⊢)epsilon
+     ⎕←'part one:',gamma×⍥(2∘⊥)epsilon
  }
