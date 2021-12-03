@@ -4,16 +4,14 @@
      in←↑{' '(≠⊆⊢)¨⊃⎕NGET ⍵ 1}⍵
 
      ns←⍎¨⊢/in
-     cmds←{⍵∘≡¨⊣/in}¨('forward' 'up' 'down')
-     (fw up dn)←+/cmdmat←↑{⍵×ns}¨cmds
+     cmds←{⍵∘≡¨⊣/in}¨('forward' 'down' 'up')
+     (fw dn up)←+/cmdmat←↑{⍵×ns}¨cmds
 
      ⎕←'part one:',fw×dn-up
 
-     ⍝ the command matrix with the first row (forward) dropped
-     ⍝ and then flipped so that down is on top
-     ⍝ (could just alter the order of the commands above)
-     ⍝ represents the running aim if we plus scan the rows subtract the columns
-     aim←-⌿+\⊖1↓cmdmat
+     ⍝ the command matrix with the first row (forward) dropped represents
+     ⍝ the running aim if we plus scan the rows subtract the columns
+     aim←-⌿+\1↓cmdmat
 
      ⍝ once we've constructing a matrix of forward commands
      ⍝ and running aim, we can multiply the columns for the various
