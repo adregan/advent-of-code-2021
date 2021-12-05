@@ -21,14 +21,30 @@
          ⍝ ⍵⍵ is the predicate to check a winner
          ⍝ state is computed by calling the first number and combining with previous state
          state←(⍺⍺⊃⍺)∨⍵
-         ⍝ check the state for a winner
-         (winner wstate)←⍵⍵ state
+         ⍝ check the state for a board matching the predicate
+         (match mstate)←⍵⍵ state
 
-         (1<≢winner):winner wstate (⊃⍺) ⍝ If we've got a winner return vals to compute score
-         (1↓⍺)∇ state                   ⍝ If not drop the first and recurse
+         (1<≢match):match mstate ⍺    ⍝ If we've got a match return vals to compute score
+         (1↓⍺)∇ state                 ⍝ If not drop the first and recurse
      }
 
-     (winner state n)←(nums){(↓⍵)∊⍨¨boards}play(boards∘bingo)(boards×0)
+     (winner state rest)←(nums){(↓⍵)∊⍨¨boards}play(boards∘bingo)(boards×0)
 
-     ⎕←'part one:',n×+/(~state)/⍥,winner
+     ⎕←'part one:',⊃rest×+/(~state)/⍥,winner
+
+     lose←{
+         ⍝ ⍺ is the boards
+         ⍝ ⍵ is the boards state
+         ⍝ returns the losing board and the losing state or double 0
+         winners←((∨/¨∧⌿¨)∨(∨/¨∧/¨))⍵
+         loser←(~winners)⍳1
+         ((1-⍨≢⍺)=+/winners):(loser⊃⍺)(loser⊃⍵)
+         0 0
+     }
+
+     ⍝ Identify the losing board and then play it until it wins
+     (loser lstate lrest)←(nums){(↓⍵)∊⍨¨boards}play(boards∘lose)(boards×0)
+     (lwinner state rest)←(rest){(↓⍵)∊⍨¨(⊂loser)}play((⊂loser)∘bingo)(⊂lstate)
+
+     ⎕←'part two:',⊃rest×+/(~,state)/⍥,lwinner
  }
