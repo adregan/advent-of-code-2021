@@ -10,11 +10,8 @@
          ⍝ ⍺ is the boards
          ⍝ ⍵ is the boards state
          ⍝ returns the winning board and the winning state or double 0
-         v←((+/¨∧⌿¨⍵)⍳1)
-         h←((+/¨∧/¨⍵)⍳1)
-         vwin←v⊃⍺,0 ⋄ vstate←v⊃⍵,0
-         hwin←h⊃⍺,0 ⋄ hstate←h⊃⍵,0
-         (vwin∨hwin)(vstate∨hstate)
+         winners←((+/¨∧⌿¨)∨(+/¨∧/¨))⍵
+         ((winners⍳1)⊃⍺,0) ((winners⍳1)⊃⍵,0)
      }
 
      play←{
