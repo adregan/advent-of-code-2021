@@ -3,7 +3,7 @@
      ⎕IO←0
      ⍝ Gotta reverse the coordinates as the are x,y and we'll need y,x
      in←↑⌽⍤⍎¨¨'-> '∘(~⍤∊⍨⊆⊢)¨⊃⎕NGET ⍵ 1
-     ⍝ Initialize grid of zeros of max x,y 
+     ⍝ Initialize grid of zeros of max x,y
      grid←0⍴⍨1+↑(⌈⌿⌈/)in
      ⍝ put it all together for part 1; compress only the horizontal and vertical;
      ⍝ reverse the coordinates and produce ranges for each.
@@ -15,6 +15,7 @@
          ((>/ys)⌽ys) (↓(,⍤0)) ((>/xs)⌽xs)
      }
 
+     ⍝ Really slows down at this point
      hvCoords ← (⊣↓∘⍳1+⊢)/(↑rev/(hv⌿in))
 
      _←{(⍵⌷grid) ← ⍵⌷grid+1}¨¨hvCoords
