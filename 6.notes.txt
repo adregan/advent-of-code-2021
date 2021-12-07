@@ -1,0 +1,4 @@
+{c←9⍴0 ⋄ c[⍵] ← 1 ⋄ c} is {~@⍵⊢9⍴0}
+state[⍳7] ← 1⌽⍵[⍳7] is state[⍳7] ⌽⍨← 1
+Since you only use new once, you might as well inline ⍵[0] into state[8] ← new giving state[8] ← ⍵[0] which'll line up nicely too.
+state[6] ← state[6] + ⍵[7] is state[6] +← ⍵[7]
