@@ -18,5 +18,5 @@
      ⍝ Call day 80 times on the input
      ⎕←'part one:',+/(day⍣80)init
      ⍝ Call day 256 times on the input
-     ⎕←'part two:',+/(day⍣256)init
+     ⎕←'part two:',0⍕+/(day⍣256)init
  }
