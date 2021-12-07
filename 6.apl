@@ -1,5 +1,6 @@
  daySix←{
      ⎕IO←0
+     ⎕FR←1287
      in←{⍎⊃⊃⎕NGET ⍵ 1}⍵
 
      init←↑+⌿{c←9⍴0 ⋄ c[⍵] ← 1 ⋄ c}¨in
@@ -18,5 +19,5 @@
      ⍝ Call day 80 times on the input
      ⎕←'part one:',+/(day⍣80)init
      ⍝ Call day 256 times on the input
-     ⎕←'part two:',0⍕+/(day⍣256)init
+     ⎕←'part two:',+/(day⍣256)init
  }
