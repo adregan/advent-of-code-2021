@@ -5,7 +5,7 @@
      ⍝ and an array of all possible values 0 - max, apply absolute value
      ⎕←'part one:',⌊/+/moves←(|(⍳1+⌈/)∘.-⊢)in
 
-     ⍝ crab calc is a brute force sum of all the numbers from 1..n
-     ⍝ where n is each entry in the move matrix
-     ⎕←'part two:',⌊/+/((+/(1∘+⍤⍳⊢))⍤0⊢)moves
+     ⍝ learned about triangular numbers at The APL Orchard: ⍝ https://en.wikipedia.org/wiki/Triangular_number
+     ⍝ rather than sum all the numbers 1–n, the formula (n(n+1))/2 accomplishes the same thing
+     ⎕←'part two:',⌊/+/((2÷⍨⊢×1+⊢)⍤0⊢)moves
  }
