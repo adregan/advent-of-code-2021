@@ -15,4 +15,6 @@
      step←{fc s←⍵ ⋄ flash fc (1+s)}
 
      ⎕←'part one:',⊃(step⍣100)0 in
+     ⍝ For part 2 we count the number of steps and recurse until all are zero
+     ⎕←'part two:',{⍺←0 ⋄ c←⍺+1 ⋄ (_ s) ← step 0 ⍵ ⋄ (0=+/,s): c ⋄ c ∇ s }in
  }
