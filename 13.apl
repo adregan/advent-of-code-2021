@@ -11,7 +11,6 @@
          (axis amt)←⊃i
          ⍝ the tail of the instructions
          nxt←(1↓i)
-
          axis='y': (nxt (amt fold g))
          axis='x': (nxt (⊖⍉(amt fold ⌽⍉g)))
          nxt g
@@ -19,5 +18,7 @@
 
      ⍝ grid is initialized with each coordinate set to 1
      g←(↑1+⌈/coord)⍴0 ⋄ g[coord] ← 1
-     run⍣≡(instr g)
+     ⎕←'part one:',+/,1⊃run⍣≡((1↑instr) g)
+     ⎕←'part two:'
+     ↑{('0'⎕R'.')⍤('1'⎕R'#')⍕⍵}¨↓(1⊃run⍣≡(instr g))
  }
