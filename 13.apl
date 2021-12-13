@@ -12,7 +12,8 @@
          ⍝ the tail of the instructions
          nxt←(1↓i)
          axis='y': (nxt (amt fold g))
-         axis='x': (nxt (⊖⍉(amt fold ⌽⍉g)))
+         ⍝ spin grid clockwise before folding and then spin it back
+         axis='x': (nxt (⍉⌽(amt fold ⌽⍉g)))
          nxt g
      }
 
