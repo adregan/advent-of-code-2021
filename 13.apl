@@ -1,4 +1,5 @@
  dayThirteen←{
+     ⎕IO←0
      (c i)←d⊆⍨0<≢¨d←⊃⎕NGET ⍵ 1
      ⍝ coords are x,y, reverse for y,x
      coord←⌽⍤⍎¨c
