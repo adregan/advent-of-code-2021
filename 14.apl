@@ -1,13 +1,9 @@
  dayFourteen←{
      ⎕IO←0
-     ⍝ (1 1∘⊂) a useful idiom to produce a head and a tail
-     d←(1 1∘⊂)⊃⎕NGET ⍵ 1
-     pt←⊃⊃d                      ⍝ polymer template
-     rs←' -> '∘(~⍤∊⍨⊆⊢)¨1↓1⊃d    ⍝ insertion rules
-     insert←{
-         char←¯1↑∊(((⍺,⍵)≡⊢)¨⊣/↑rs)/rs
-         ⍺,char,⍵
-     }
-     ⍝ pin the last character on after inserting and taking each's first 2
-     ({(¯1↑⍵),⍨∊2↑¨2insert/⍵}⍣4)pt
+     ptemp←⊃⊃(_ rs)←(0∘<⍤≢¨⊆⊢)⊃⎕NGET ⍵ 1  ⍝ polymer template
+     (rules ins)←↓⍉↑' -> '∘(~⍤∊⍨⊆⊢)¨rs    ⍝ insertion rules
+
+     insert←{¯1↓⍵(,,⍤0)0,⍨∊ins⌷⍨⊂⊢/↑⍸⍉rules∘.≡(2,/⍵)}
+
+     ⎕←'part one:',(⌈/-⌊/)(≢⊢)⌸(insert⍣10)ptemp
  }
