@@ -4,11 +4,13 @@
          ⍝ ⍺⍺ is the pred which should take the score and should return true if there is a winner
          ⍝ ⍵⍵ is the roll
          ⍝ ⍵ is a combo of score, current player, and roll count
+         ⍝ ⍺ is the max position
          (s psn p rc)←⍵
 
-         (⍺⍺ s): (⊂s),(⊂psn),p,rc
+         (⍺⍺ s):(⊂s),(⊂psn),p,rc ⍝ We have a winner
 
-         s[p]←s[p]++/⍵⍵ rc
+         np←((⍺,⊢)⌷⍨(0<⊢))⍺|(psn[p]++/⍵⍵ rc) ⍝ np is max if residue is zero
+         psn[p]←np ⋄ s[p]←s[p]+np ⍝ sets new position and updates score
          (⊂s),(⊂psn),(~p),(3+rc)
      }
 
@@ -18,6 +20,5 @@
          3↑⍵⌽(1+⍳⍺)
      }
 
-     (∨/(1000≤⊢)) turn (100∘roll)⍣≡(⊂0 0),(⊂p1 p2),0,0
-
+     ⎕←'part one:',((1⊃∘⊃⊢)×(⊃⍤(¯1∘↑)⊢))10(∨/(1000≤⊢))turn(100∘roll)⍣≡(⊂0 0),(⊂p1 p2),0,0
  }
