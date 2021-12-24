@@ -16,6 +16,9 @@
          ⍝ y delta is ¯1, x delta is the direction of the negated x (drag); new point is velocity plus last position
          (v+(¯1,×-(⊃⌽v))) (p,(⊂v+⊃⌽p)) (h∨hit)
      }
-     hits←⊃∘⌽¨all←{((y x)∘step⍣≡) ⍵ (⊂0 0) 0}¨velos←,(⍳⌈⍥|/y)∘.,(⍳⌊/x)
+     ys←{(⌽-1+⍵),0,1+⍵}(⍳⌈⍥|/(2×y))
+     xs←(1+⍳⌈/x)
+     hits←⊃∘⌽¨all←{((y x)∘step⍣≡) ⍵ (⊂0 0) 0}¨velos←,ys∘.,xs
      ⎕←'part one:',⌈/∊⌈⍥⊃/¨¨1⊃¨hits/all ⍝ yeesh pretty gnarly
+     ⎕←'part two:',+/hits
  }
